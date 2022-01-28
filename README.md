@@ -42,3 +42,21 @@ legendary item and as such its Quality is 80 and it never alters.
   - Before we can change this code and add the new feature we need to refactor it 
   - Before we can refactor it we need some tests
 - It comes with a starting test which fails, so the first thing to do is to get the test to pass
+
+# Steps Taken
+- The quickest way to get the test to pass is to match the name that we've constructed it with
+- When this test is green it shows that we have setup the IDE correctly 
+- Rename Test Method
+- The supplied test is not a very strong test, which we want to improve considerably before relying on it for refactoring 
+- Convert to use approval test framework  (https://github.com/approvals/ApprovalTests.Java)
+  - Running the test for the first time will fail because we don't have an approved result to compare against
+  - mv received.txt to approved.txt to approve changes
+- Rewrite Test to use combination approvals 
+
+# Coverage
+- Coverage is not the only mesure of how well you're testing the code
+- Another more stringent method is to subject your testsuite to something called _mutation testing_, for which there are tools 
+- To do this by hand, you start with a test that will pass and then you make a small change in the code, i.e. a _mutation_ to the code
+- then you run the tests again and see whether they actually catch the error that you've introduced 
+- You can do a few manual mutations to check the quality of your tests
+- If you manage to change the code and the test still passes, you have a problem 
