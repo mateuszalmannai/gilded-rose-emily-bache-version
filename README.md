@@ -60,3 +60,19 @@ legendary item and as such its Quality is 80 and it never alters.
 - then you run the tests again and see whether they actually catch the error that you've introduced 
 - You can do a few manual mutations to check the quality of your tests
 - If you manage to change the code and the test still passes, you have a problem 
+
+# Refactoring
+- the updateQuality method is the target of the refactoring
+- it's quite tangled conditional logic that's looking at the name of the item and deciding how to update stuff 
+- the task we have is to add a new class of item: _ConjuredItems_
+- it would be really useful if all the logic to do with a particular type of item were grouped together in this methods, so that it would be obvious what to do when you're adding a new kind of item 
+- That's often the way with refactorings: _you're trying to make the code look so that the new feature is really easy to add_
+
+## Refactoring Steps
+1. Replace `items[i]` with a local variable 
+2. pull out the body of the for loop into its own method 
+3. inline the `item` variable again in `updateQuality()`
+4. Now `doUpdateQuality()` is the target of the refactoring 
+5. lift-up-conditional refactoring
+  - first identify the conditional to lift up, in this case all the code related to "Aged Brie"
+  - when we duplicate all the code into both branches of the if/else we should have some dead code to delete, which the coverage tool will help us find
