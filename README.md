@@ -76,3 +76,16 @@ legendary item and as such its Quality is 80 and it never alters.
 5. lift-up-conditional refactoring
   - first identify the conditional to lift up, in this case all the code related to "Aged Brie"
   - when we duplicate all the code into both branches of the if/else we should have some dead code to delete, which the coverage tool will help us find
+ 
+## Replace Conditional with Polymorphism
+- Makes code easier to handle and easier to add new classes of Item without having to go into the `doUpdateQuality()` method
+- This method currently doesn't obey the open-closed principle
+- We'd like to be able to add Conjured Items without modifying existing code 
+- We want to create some subclasses on Item and move the code to do with a particular type of item into the relevant subclass 
+  - this will make it easier to add a new class of Item 
+  - you just need a new subclass of Item without changing the existing code everytime you need a new sort 
+- Given we have a requirement for a new class of Item, it's kind of reasonable to think this might be a frequent occurence 
+- We just need to change the Item class minimally with a factory method and some subclasses
+### Steps
+1. Create relevant subclasses 
+2. Push down parts of the switch statement logic into each subclass 
